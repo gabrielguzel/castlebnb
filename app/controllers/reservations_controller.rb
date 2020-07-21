@@ -1,4 +1,4 @@
-class ReservationController < ApplicationController
+class ReservationsController < ApplicationController
     def create
         @reservation = reservation.new(reservation_params)
         if @reservation.save
@@ -9,13 +9,11 @@ class ReservationController < ApplicationController
     end
 
     def new
-        @reservation = reservation.new
-        end
+        @reservation = Reservation.new
     end
 
     def edit
         @reservation 
-        end 
     end 
 
     def update
@@ -38,6 +36,5 @@ class ReservationController < ApplicationController
 
     def reservation_params
         params.require(:reservation).permit(:arrival_date, :departure_date, :reservation, :user)
-        end
     end
 end

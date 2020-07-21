@@ -1,4 +1,4 @@
-class ReviewController < ApplicationController
+class ReviewsController < ApplicationController
     def create
         @review = review.new(review_params)
         if @review.save
@@ -9,7 +9,7 @@ class ReviewController < ApplicationController
     end
 
     def new
-        @review = review.new
+        @review = Reviews.new
     end
 
   private

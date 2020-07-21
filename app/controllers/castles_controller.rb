@@ -1,6 +1,6 @@
 class CastlesController < ApplicationController
 
-  before_action :set_castle
+  before_action :set_castle, only: [:show, :edit, :update, :destroy];
   
   def index
     @castles = Castle.all

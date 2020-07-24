@@ -1,1 +1,17 @@
-<h1>HELLO WORLD</h1>
+<h1>ALL CASTLES AVAILABLE</h1>
+<div class="card-deck">
+  <% @castles.each do |castle| %>
+
+
+  <div class="card" style="width: 18rem;">
+    <%= image_tag castle.img, :class => "card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= castle.name %></h5>
+      <p class="card-text"><%=castle.address %></p>
+      <p class="card-text"><%=castle.city%></p>
+      <a href="castles/<%=castle.id%>" class="btn btn-primary">Show Castle</a>
+    </div>
+  </div>
+
+  <%end%>
+</div>

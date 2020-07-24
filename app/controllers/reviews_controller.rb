@@ -18,3 +18,5 @@ class ReviewsController < ApplicationController
         params.require(:review).permit(:stars, :description, :castle, :user)
         end
     end
+end
+

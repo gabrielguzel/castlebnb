@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="card mb-3">
+    <%= image_tag @castle.img, :class => "card-img-top"%>
+    <div class="card-body">
+      <h5 class="card-title"><%= @castle.name%></h5>
+      <p class="card-text"><%= @castle.details%></p>
+      <p class="card-text"><small class="text-muted"><%= @castle.address%></small></p>
+      <p class="card-text"><small class="text-muted"><%= @castle.city%></small></p>
+    </div>
+  </div>
+  <a href="<%=@castle.id%>/reservations/new" class="btn btn-primary">Reservation</a>
+  <a href="<%=@castle.id%>/reviews/new" class="btn btn-primary">Add Review</a>
+
+</div>

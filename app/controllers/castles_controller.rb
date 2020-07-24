@@ -3,13 +3,7 @@ class CastlesController < ApplicationController
   before_action :set_castle, only: [:show, :edit, :update, :destroy];
   
   def index
-    @castles = Castle.all
-  end
-
- 
-  def index
-    @castles = Castle.where.not(latitude: nil, longitude: nil)
-
+    @castles = Castle.geocoded
     @markers = @castles.map do |castle|
       {
         lat: castle.latitude,
@@ -17,13 +11,11 @@ class CastlesController < ApplicationController
       }
     end
   end
-end
 
   def show
     @castle
   end
   
-
   def new
     @castle = Castle.new
   end
@@ -71,9 +63,6 @@ end
 
   def castle_params
     params.require(:castle).permit(:img,:name,:price,:details,:city,:address)
-  end
-  
-  
-  
-  
+  end 
+
 end

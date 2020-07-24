@@ -6,6 +6,19 @@ class CastlesController < ApplicationController
     @castles = Castle.all
   end
 
+ 
+  def index
+    @castles = Castle.where.not(latitude: nil, longitude: nil)
+
+    @markers = @castles.map do |castle|
+      {
+        lat: castle.latitude,
+        lng: castle.longitude
+      }
+    end
+  end
+end
+
   def show
     @castle
   end

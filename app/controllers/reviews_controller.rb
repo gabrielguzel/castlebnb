@@ -1,25 +1,22 @@
 class ReviewsController < ApplicationController
-  def new
-    @review = Review.new
-  end
-  
-  def create
-    @review = Review.new(params_review)
-    @castle = Castle.find(params[:castle_id])
-    @review.castle = @castle
-    if @review.save
-      flash[:success] = "Review successfully created"
-      redirect_to @review
-    else
-      flash[:error] = "Something went wrong"
-      render 'new'
+    def create
+        @review = review.new(review_params)
+        if @review.save
+          redirect_to review_path(@review)
+        else
+          render 'new'
+        end
     end
-  end
+
+    def new
+        @review = Reviews.new
+    end
 
   private
 
-  def params_review
-    params.require(:review).permit(:stars,:description)
-  end
-  
+    def review_params
+        params.require(:review).permit(:stars, :description, :castle, :user)
+        end
+    end
 end
+

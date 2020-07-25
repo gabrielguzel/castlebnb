@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
   const fitMapToMarkers = (map, markers) => {
@@ -16,8 +17,6 @@ const initMapbox = () => {
     markers.forEach((marker) => {
       new mapboxgl.Marker()
         .setLngLat([marker.lng, marker.lat])
-        .setPopup(new mapboxgl.Popup({offset: 25})
-        .setHTML(marker.infoWindow.content))
         .addTo(map);
     });
     fitMapToMarkers(map, markers);

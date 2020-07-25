@@ -8,7 +8,6 @@ class CastlesController < ApplicationController
       {
         lat: castle.latitude,
         lng: castle.longitude,
-        infoWindow: render_to_string(partial: "castle/map_box", locals: { castle: castle })
       }
     end
   end

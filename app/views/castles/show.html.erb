@@ -11,4 +11,8 @@
   <a href="<%=@castle.id%>/reservations/new" class="btn btn-primary">Reservation</a>
   <a href="<%=@castle.id%>/reviews/new" class="btn btn-primary">Add Review</a>
 
+<div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>

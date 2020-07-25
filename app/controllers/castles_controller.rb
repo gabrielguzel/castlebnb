@@ -3,20 +3,27 @@ class CastlesController < ApplicationController
   before_action :set_castle, only: [:show, :edit, :update, :destroy];
   
   def index
-    @castles = Castle.all
+    @castles = Castle.geocoded
+    @markers = @castles.map do |castle|
+      {
+        lat: castle.latitude,
+        lng: castle.longitude,
+        infoWindow: render_to_string(partial: "castle/map_box", locals: { castle: castle })
+      }
+    end
   end
 
   def show
     @castle
   end
   
-
   def new
     @castle = Castle.new
   end
 
   def create
     @castle = Castle.new(castle_params)
+    @castle.user = current_user
     if @castle.save
       flash[:success] = "Castle successfully created"
       redirect_to @castle
@@ -58,9 +65,6 @@ class CastlesController < ApplicationController
 
   def castle_params
     params.require(:castle).permit(:img,:name,:price,:details,:city,:address)
-  end
-  
-  
-  
-  
+  end 
+
 end

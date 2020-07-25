@@ -7,7 +7,8 @@ class CastlesController < ApplicationController
     @markers = @castles.map do |castle|
       {
         lat: castle.latitude,
-        lng: castle.longitude
+        lng: castle.longitude,
+        infoWindow: render_to_string(partial: "castle/map_box", locals: { castle: castle })
       }
     end
   end
@@ -22,6 +23,7 @@ class CastlesController < ApplicationController
 
   def create
     @castle = Castle.new(castle_params)
+    @castle.user = current_user
     if @castle.save
       flash[:success] = "Castle successfully created"
       redirect_to @castle
